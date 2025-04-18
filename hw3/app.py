@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Integer, String
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
@@ -90,9 +90,52 @@ def reset_db():
 
 @app.route('/')
 def show_all_reviews():
-    return 'Welcome to Movie Theater reviews!'
+    with app.app_context():
+        current_reviews = db_manager.get()
 
-  
+    # redirectURL = redirect(url_for('show_one_review'))
+    title = 'Movie Theater Reviews!'
+    return render_template("index.html", title=title, reviews=current_reviews)
+
+@app.route('/review/<review_id>')
+def show_one_review(review_id):
+    with app.app_context():
+        current_review = db_manager.get(review_id=review_id)
+
+    return render_template("review.html", review=current_review)
+
+@app.route('/create', methods=['GET','POST'])
+def create_review():
+    if request.method == 'POST':
+        title = request.form['title'] # used https://python-adv-web-apps.readthedocs.io/en/latest/flask_db3.html
+        text = request.form['texts']
+        rating = request.form['rating']
+        with app.app_context():
+            db_manager.create(title=title, text=text, rating=rating)
+        return show_all_reviews()
+            
+    return render_template("form.html", review=None)
+
+@app.route('/edit/<review_id>', methods=['GET', 'POST'])
+def edit_review(review_id):
+    with app.app_context():
+        current_review = db_manager.get(review_id=review_id)
+        if request.method == 'POST':
+            title = request.form['title']
+            text = request.form['texts']
+            rating = request.form['rating']
+            with app.app_context():
+                db_manager.update(review_id=review_id, title=title, text=text, rating=rating)
+            return show_all_reviews()
+
+    return render_template("form.html", review=current_review)
+
+@app.route('/delete/<review_id>')
+def delete_review(review_id):
+    with app.app_context():
+        db_manager.delete(review_id=review_id)
+    return show_all_reviews()
+
 # RUN THE FLASK APP
 if __name__ == "__main__":
     with app.app_context():

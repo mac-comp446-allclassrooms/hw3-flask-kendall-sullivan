@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+    <div id="container">
+        <h1>Movie Reviews</h1>
+        <!-- used https://www.w3schools.com/html/html_tables.asp-->
+        <table> 
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            {% for review in reviews %} 
+            <tr>
+                <td>
+                    <!-- used https://stackoverflow.com/questions/7478366/create-dynamic-urls-in-flask-with-url-for -->
+                    <a href="{{ url_for('show_one_review', review_id=review.id) }}">{{ review.title }}</a>
+                </td>
+                <td>
+                    {% if review.rating == 1 %}
+                        &#9733;
+                    {% elif review.rating == 2 %}
+                        &#9733;&#9733;
+                    {% elif review.rating == 3 %}
+                        &#9733;&#9733;&#9733;
+                    {% elif review.rating == 4 %}
+                        &#9733;&#9733;&#9733;&#9733;
+                    {% elif review.rating == 5 %}
+                        &#9733;&#9733;&#9733;&#9733;&#9733;
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ url_for('edit_review', review_id=review.id) }}">&#9998;</a>
+                </td>
+                <td>
+                    <a href="{{ url_for('delete_review', review_id=review.id) }}">X</a>
+                </td>
+            </tr>
+
+            {% endfor %} 
+        </table>
+        <div>
+            <a href="{{ url_for('create_review') }}">Create New Review</a>
+        </div>
+    </div>
+    {% endblock %}
