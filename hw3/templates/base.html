@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+        <title>{{ title }}</title>
+    </head>
+
+    <body> 
+        <img src="../static/res/curtain_left.png" alt="red left stage curtain" class="curtain" id="curtain_left">
+        <img src="../static/res/curtain_right.png" alt="red right stage curtain" class="curtain" id="curtain_right">
+        {% block content %}
+
+        {% endblock %}
+    </body>
+</html>

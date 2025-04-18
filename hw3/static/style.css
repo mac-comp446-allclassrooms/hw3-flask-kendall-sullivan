@@ -1,0 +1,124 @@
+@font-face {
+    font-family: theaterFont;
+    src: url(res/neon-light.regular.otf);
+}
+
+@font-face {
+    font-family: movieFont;
+    src: url(res/standingroomonly.regular.otf);
+}
+
+* {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+}
+
+body {
+    background-color: #1d2229;
+}
+
+h1, h2 {
+    font-family: theaterFont;
+    font-size: 50px;
+    text-align: center;
+    color: #fcedbb;
+    text-shadow: 2px 2px 4px #fff2c9; /* used https://www.w3schools.com/css/css3_shadows.asp */
+    padding-top: 8%;
+}
+
+h3 {
+    text-align: center;
+    font-size: 24px;
+    color: #e33b3b;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10%
+}
+
+table {
+    margin: auto;
+}
+
+.curtain {
+    height: 100vh;
+    width: 20%;
+}
+
+#curtain_left {
+    float: left;
+}
+
+#curtain_right {
+    float: right;
+}
+
+input, textarea {
+    width: 70%;
+}
+
+label {
+    color: #edc42d;
+}
+
+.content {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+button {
+    float: right;
+    margin-right: 10%;
+    margin-top: 5%;
+    padding: 2%;
+    font-family: movieFont;
+    background-color: #e33b3b;
+    color: #fcedbb;
+    box-shadow: 2px 2px 3px #fcedbb;
+    border: none;
+    font-size: small;
+}
+
+.link {
+    padding-top: 15%;
+    text-align: center;
+    font-size: 20px;
+}
+
+td {
+    width: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    color: #fcedbb;
+    font-size: large;
+}
+
+#movieTitle {
+    padding-left: 5%;
+}
+
+th {
+    font-size: 24px;
+    color: #e33b3b;
+    font-family: movieFont;
+
+}
+
+.icon {
+    text-align: center;
+}
+
+a {
+    color: #edc42d;
+}
+
+p {
+    color: #fcedbb;
+    font-size: larger;
+}
