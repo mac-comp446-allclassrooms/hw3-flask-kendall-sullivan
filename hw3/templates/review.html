@@ -2,8 +2,8 @@
 
     {% block content %}
     <div id="container">
-        <h1>Movie Reviews</h1>
-        <h3>{{review.title}}: 
+        <h2>{{review.title}}</h2>
+        <h3> 
             {% if review.rating == 1 %}
                 &#9733;
             {% elif review.rating == 2 %}
@@ -16,9 +16,9 @@
                 &#9733;&#9733;&#9733;&#9733;&#9733;
             {% endif %}
         </h3>
-        <p>{{review.text}}</p>
+        <p class="content">{{review.text}}</p>
     </div>
-    <div>
+    <div class="link">
         <a href="{{ url_for('show_all_reviews') }}">Back to All Reviews</a>
     </div>
     {% endblock %}
